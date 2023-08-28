@@ -67,6 +67,7 @@
           search
         </button>
       </div>
+      <!-- spiner add -->
       <div id="spinContaier" class="spinContaier">
         <div class="spinner" id="spiner"></div>
       </div>
@@ -74,9 +75,26 @@
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-4"
         id="cardContainer"
       ></div>
-      <!-- spiner add -->
+      <!-- modal part -->
+
+      <dialog id="my_modal_1" class="modal">
+        <form
+          method="dialog"
+          class="modal-box w-8/12/12 min-h-[76vh] max-w-5xl"
+        >
+          <button
+            class="btn hover:bg-red-500 bg-white absolute -left-1 -top-0 z-30"
+          >
+            ✕
+          </button>
+          <div id="modalbody"></div>
+        </form>
+      </dialog>
     </main>
 
     <script src="./index.js"></script>
   </body>
 </html>
+
+<!--
+ -->
