@@ -14,7 +14,15 @@ const loadAllData = async () => {
     const alldata = data.data;
     displayData(alldata);
   } catch (error) {
-    console.log(error.message);
+    const classesToAdd = ["text-center", "font-bold", "text-xl"];
+    const body = document.body;
+    const h1 = document.createElement("h1");
+    h1.classList.add.apply(h1.classList, classesToAdd);
+    h1.innerText = `
+    ${error.message}
+    404
+    `;
+    body.appendChild(h1);
   } finally {
     spiner.style.display = "none";
     spinContaier.style.display = "none";
