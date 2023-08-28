@@ -3,7 +3,7 @@ const loadAllData = async () => {
   const spinContaier = document.getElementById("spinContaier");
   spiner.style.display = "block";
   try {
-    await new Promise((resolve) => setTimeout(resolve));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     const res = await fetch(
       "https://openapi.programming-hero.com/api/ai/tools"
     );
@@ -59,12 +59,17 @@ const displayData = (data) => {
 };
 
 const handelModal = async (id) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/ai/tool/${id}`
-  );
-  const data = await res.json();
-  const singleData = data.data;
-  handelShowmodal(singleData);
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const res = await fetch(
+      `https://openapi.programming-hero.com/api/ai/tool/${id}`
+    );
+    const data = await res.json();
+    const singleData = data.data;
+    handelShowmodal(singleData);
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 let previousDiv = null; // To keep track of the previously added div
