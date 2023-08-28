@@ -20,7 +20,6 @@ const loadAllData = async () => {
     spinContaier.style.display = "none";
   }
 };
-
 const displayData = (data) => {
   const cardContainer = document.getElementById("cardContainer");
   data.tools.map((product) => {
@@ -51,13 +50,11 @@ const displayData = (data) => {
       }')" class="btn hover:btn-error rounded-full bg-transparent"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
   </div>
-</div>
-    
+</div>  
     `;
     cardContainer.appendChild(div);
   });
 };
-
 const handelModal = async (id) => {
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -71,9 +68,7 @@ const handelModal = async (id) => {
     console.log(error.message);
   }
 };
-
-let previousDiv = null; // To keep track of the previously added div
-
+let previousDiv = null;
 const handelShowmodal = (data) => {
   my_modal_1.showModal();
   const modalbody = getId("modalbody");
@@ -82,7 +77,6 @@ const handelShowmodal = (data) => {
   }
   const div = document.createElement("div");
   div.innerHTML = `
-  
  <div class="card card-side bg-base-100 z-10 flex gap-2 flex-col-reverse lg:flex-row">
  <div class="card-body flex-1 space-y-5 bg-[#EB57570D] border border-red-200 rounded-md">
    <h2 class="card-title">${data.description}</h2>
@@ -92,13 +86,12 @@ const handelShowmodal = (data) => {
           data.pricing[0].price.split("/")[0]
         }/ </h1>
         <h2 class="text-[#03A30A] font-bold">${
-          data.pricing[0].price.split("/")[1]
+          data.pricing[0]?.price.split("/")[1] || ""
         } </h1>
         <p class="text-[#03A30A] font-bold"text-[#03A30A]>${
           data.pricing[0].plan
         }</p>
       </div>
-
        <div class="text-center  bg-white p-5 rounded-md">
         <h1 class="text-[#F28927] font-bold">${
           data.pricing[1].price.split("/")[0]
@@ -110,7 +103,6 @@ const handelShowmodal = (data) => {
           data.pricing[1].plan
         }</p>
       </div>
-
       <div class="text-center  bg-white p-5 rounded-md ">
         <h1 class="text-[#EB5757] font-bold">${data.pricing[2].price.slice(
           0,
@@ -121,9 +113,7 @@ const handelShowmodal = (data) => {
         }</p>
       </div>
   </div>
-
-  <div class="flex flex-col sm:flex-row justify-between">
-    
+  <div class="flex flex-col sm:flex-row justify-between">   
   <div class="space-x-8">
    <h1 class="text-xl font-bold mb-3">Features</h1>
     <ul class="list-disc text-left">
@@ -132,7 +122,6 @@ const handelShowmodal = (data) => {
       <li>${data.features["3"].feature_name}</li>
     </ul>
   </div>
-
   <div class="space-x-5">
    <h1 class="text-xl mb-3 font-bold">Integrations</h1>
     <ul class="list-disc">
@@ -142,11 +131,12 @@ const handelShowmodal = (data) => {
      
     </ul>
   </div>
-  
   </div>
  </div>
  <div class="flex-1 border border-gray-300a p-6 shadow-sm rounded-md">
-  <figure><img  src="${data.image_link[0]}"alt=${data.tool_name}/></figure>
+  <figure><img  src="${data?.image_link[0] || "image not found"}"alt=${
+    data.tool_name
+  }/></figure>
   <div class="mt-5 space-y-3">
   <h1 class="font-bold text-center text-md">${
     data.input_output_examples[0].input
@@ -158,12 +148,9 @@ const handelShowmodal = (data) => {
   `;
   modalbody.appendChild(div);
   previousDiv = div;
-
   console.log(data.integrations[0]);
 };
-
 loadAllData();
-
 const getId = (id) => {
   return document.getElementById(id);
 };
